@@ -1,0 +1,120 @@
+<script type="text/javascript">
+    var DATOS;
+    $(document).ready(function(){
+        cargarTodos();
+    });
+    
+    function cargarTodos(){
+        console.log("Entra a cargar recursos");
+        var datos = ejecutarQuery("SELECT * FROM RECURSO");
+        DATOS = datos;
+        var salida = "";
+        var cont = 0;
+        $.each(datos, function(e){
+            salida = salida + "<tr>";
+            salida = salida + "<td>" + cont + "</td>";
+            salida = salida + "<td>" + datos[0][cont].IDRECURSO + "</td>";
+            salida = salida + "<td>" + datos[0][cont].RUTRECURSO + "</td>";
+            salida = salida + "<td>" + datos[0][cont].NOMBRES + "</td>";
+            salida = salida + "<td>" + datos[0][cont].APPATERNO + "</td>";
+            salida = salida + "<td>" + datos[0][cont].APMATERNO + "</td>";
+            salida = salida + "<td>" + datos[0][cont].COSTO + "</td>";
+            salida = salida + "<td>" + datos[0][cont].COSTOUSO + "</td>";
+            salida = salida + "</tr>";
+            cont ++;
+        });
+        $('#cuerpo-recursos').html(salida);
+    }
+    $.each(DATOS, function(){
+        console.log(DATOS[0][1].IDRECURSO)});
+    
+</script>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="page-header">
+                <h1>
+                    Recursos
+                </h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <form role="form">
+                <div class="form-group form-group-sm">
+                    <label for="txtRut">
+                        Rut
+                    </label>
+                    <input id="txtRut" type="text" class="form-control" id="txtRut" maxlength="12" />
+                </div>
+                <div class="form-group form-group-sm">
+                    <label for="txtNombre">
+                        Nombres
+                    </label>
+                    <input type="text" class="form-control" id="txtNombre" />
+                </div>
+                <div class="form-group form-group-sm">
+                    <label for="txtApPaterno">
+                        Apellido Paterno
+                    </label>
+                    <input type="text" class="form-control" id="txtApPaterno" />
+                </div>
+                <div class="form-group form-group-sm">
+                    <label for="txtApMaterno">
+                        Apellido Materno
+                    </label>
+                    <input type="text" class="form-control" id="txtApMaterno" />
+                </div>
+                <div class="form-group form-group-sm">
+                    <label for="txtCosto">
+                        Costo
+                    </label>
+                    <input type="text" class="form-control" id="txtCosto" />
+                </div>
+                <div class="form-group form-group-sm">
+                    <label for="txtCostoUso">
+                        Costo/Uso
+                    </label>
+                    <input type="text" class="form-control" id="txtCostoUso" />
+                </div>
+                <button id="btnAgregar" type="button" class="btn btn-default btn-sm">
+                    Agregar
+                </button>
+            </form>
+        </div>
+        <div class="col-sm-9">
+            <table class="table table-striped table-hover small">
+                <thead>
+                    <tr>
+                        <th>
+                            #
+                        </th>
+                        <th>
+                            IDRECURSO
+                        </th>
+                        <th>
+                            RUT
+                        </th>
+                        <th>
+                            NOMBRES
+                        </th>
+                        <th>
+                            APELLIDO PATERNO
+                        </th>
+                        <th>
+                            APELLIDO MATERNO
+                        </th>
+                        <th>
+                            ACCIONES
+                        </th>
+                    </tr>
+                </thead>
+                <tbody ID="cuerpo-recursos">
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
